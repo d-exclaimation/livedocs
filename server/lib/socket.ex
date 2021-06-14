@@ -17,6 +17,7 @@ defmodule Livedocs.Socket do
     # Get the state as the registry key of the request path
     state = %{registry_key: request.path}
 
+    IO.puts("Connection was made on #{request.path}")
     {:cowboy_websocket, request, state}
   end
 
@@ -26,13 +27,14 @@ defmodule Livedocs.Socket do
     Registry.Livedocs
     |> Registry.register(state.registry_key, {})
 
+    # TODO: Should send the data initial state
     {:ok, state}
   end
 
   @doc """
   Incoming text response
   """
-  @spec websocket_handle({:text, any()}, state()) :: {:reply, {:text, String.t()}, state()}
+  @spec websocket_handle({:text, any()}, state()) :: {:ok, state()}
   def websocket_handle({:text, json}, state) do
     # Parse data, and encode them back lol
     with {:ok, %{"data" => data}} <- Jason.decode(json),
@@ -40,7 +42,9 @@ defmodule Livedocs.Socket do
       # Emit to all
       emit(state.registry_key, message)
 
-      {:reply, {:text, message}, state}
+      # TODO: Update to add endpoint for saving or using post request lol
+
+      {:ok, state}
     else
       _ -> {:reply}
     end
@@ -54,8 +58,11 @@ defmodule Livedocs.Socket do
     {:reply, {:text, message}, state}
   end
 
+  @doc """
+  Emit to all client from registry
+  """
   @spec emit(binary(), binary()) :: :ok
-  defp emit(key, message) do
+  def emit(key, message) do
     Registry.Livedocs
     |> Registry.dispatch(key, &do_emit(&1, message))
   end

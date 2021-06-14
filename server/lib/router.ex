@@ -12,7 +12,7 @@ defmodule Livedocs.Router do
   use Plug.Router
 
   plug(CORSPlug,
-    origin: ["http://localhost:3000.com", "http://example2.com", ~r/https?.*example\d?\.com$/]
+    origin: ["http://localhost:3000", "http://example2.com", ~r/https?.*example\d?\.com$/]
   )
 
   # Match routes
