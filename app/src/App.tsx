@@ -1,12 +1,7 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from "react-router-dom";
-import { v4 } from "uuid";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
+import DocumentViewModel from "./components/DocumentViewModel";
 import SyncEditor from "./components/SyncEditor";
 
 const App: React.FC = () => {
@@ -14,7 +9,7 @@ const App: React.FC = () => {
     <Router>
       <Switch>
         <Route path="/" exact>
-          <Redirect to={`/docs?id=${v4()}`} />
+          <DocumentViewModel />
         </Route>
         <Route path="/docs" exact>
           <SyncEditor />
