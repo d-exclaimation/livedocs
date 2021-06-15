@@ -5,7 +5,10 @@ defmodule Livedocs do
 
   @spec start(any, any) :: {:error, any} | {:ok, pid}
   def start(_type, _args) do
+    IO.puts("\n")
+
     children = [
+      Livedocs.Repo,
       Plug.Cowboy.child_spec(
         scheme: :http,
         plug: Livedocs.Router,
