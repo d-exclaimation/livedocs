@@ -42,10 +42,6 @@ or build with
 yarn build
 ```
 
-#### Simple demo
-
-![Demo](demo.gif)
-
 ## FAQ
 
 #### Why
