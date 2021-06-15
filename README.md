@@ -2,6 +2,50 @@
 
 Live Document Editor
 
+## Demo
+
+To try the app yourself:
+
+#### Setup server:
+
+```bash
+cd server/
+mix deps.get
+mix ecto.create
+mix ecto.migrate
+```
+
+#### Start server:
+
+```bash
+iex -S mix
+```
+
+_for development_
+
+```bash
+MIX_ENV=prod mix run
+```
+
+_for production_
+
+#### Start React App on Development:
+
+```bash
+cd app/
+yarn start
+```
+
+or build with
+
+```bash
+yarn build
+```
+
+#### Simple demo
+
+![Demo](demo.gif)
+
 ## FAQ
 
 #### Why
