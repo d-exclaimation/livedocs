@@ -14,8 +14,8 @@ defmodule Livedocs.Queries do
   @doc """
   Get single document
   """
-  @spec getById(Ecto.UUID.t()) :: Document.t() | none()
-  def getById(id) do
+  @spec get_by_id(Ecto.UUID.t()) :: Document.t() | none()
+  def get_by_id(id) do
     Document
     |> Repo.get(id)
   end

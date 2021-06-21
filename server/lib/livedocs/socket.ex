@@ -27,7 +27,7 @@ defmodule Livedocs.Socket do
   @spec websocket_init(state()) :: response()
   def websocket_init(state) do
     with {:ok, uuid} <- Ecto.UUID.cast(state.registry_key),
-         %Document{} = doc <- Queries.getById(uuid) do
+         %Document{} = doc <- Queries.get_by_id(uuid) do
       # Put in the key and value of an pid, client tuple into a registry
       Registry.Livedocs
       |> Registry.register(state.registry_key, {})
