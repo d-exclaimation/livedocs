@@ -6,10 +6,10 @@
 //
 import { DeltaStatic } from "react-quill/node_modules/@types/quill";
 import { parseSave } from "../parser/parseEvent";
-import { __DOMAIN__ } from "./../../constants/uri";
+import { __URL__ } from "./../../constants/uri";
 
 export const saveRequest = (data: { value: DeltaStatic; id: string }) => {
-  fetch(`http://${__DOMAIN__}`, {
+  fetch(__URL__, {
     method: "PUT",
     credentials: "include",
     body: parseSave(data),
@@ -24,7 +24,7 @@ export const saveRequest = (data: { value: DeltaStatic; id: string }) => {
 };
 
 export const createDocument = async (): Promise<{ id: string }> => {
-  const resp = await fetch(`http://${__DOMAIN__}`, {
+  const resp = await fetch(__URL__, {
     method: "POST",
     credentials: "include",
     redirect: "follow",

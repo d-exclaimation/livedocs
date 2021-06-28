@@ -10,7 +10,7 @@ import ReactQuill from "react-quill";
 import { Delta, Sources } from "react-quill/node_modules/@types/quill";
 import { useHistory } from "react-router-dom";
 import { TOOLBAR_OPTIONS } from "../constants/quill";
-import { __DOMAIN__ } from "../constants/uri";
+import { __WS__ } from "../constants/uri";
 import { useQueryParam } from "../hooks/useQueryParam";
 import { saveRequest } from "../utils/api/request";
 import { enqueue } from "../utils/enqueue";
@@ -65,7 +65,7 @@ const SyncEditor: React.FC = () => {
   );
 
   useEffect(() => {
-    socket.current = new WebSocket(`ws://${__DOMAIN__}/ws/${id ?? ""}`);
+    socket.current = new WebSocket(`${__WS__}${id ?? ""}`);
     enqueue(() => {
       if (!socket.current) return;
       socket.current.onmessage = handler;
