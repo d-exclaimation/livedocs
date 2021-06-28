@@ -14,7 +14,7 @@ defmodule Livedocs do
         plug: Livedocs.Router,
         options: [
           dispatch: dispatch(),
-          port: 4000
+          port: String.to_integer(System.get_env("PORT", "4000"))
         ]
       ),
       Registry.child_spec(

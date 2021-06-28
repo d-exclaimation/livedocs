@@ -9,3 +9,5 @@ config :livedocs, Livedocs.Repo,
 config :livedocs,
   ecto_repos: [Livedocs.Repo],
   generators: [binary_id: true]
+
+import_config("#{Mix.env()}.exs")
