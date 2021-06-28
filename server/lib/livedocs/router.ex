@@ -16,8 +16,8 @@ defmodule Livedocs.Router do
     origin: [
       "http://localhost:3000",
       "https://60d95310abf1b069a2a0dc05--livedocuments.netlify.app",
-      "https://livedocuments.netlify.app",
-      ~r/https?.*example\d?\.com$/
+      ~r/^(?:https?:\/\/)?(?:[^.]+)?livedocuments\.netlify\.app(\/.*)?$/,
+      "https://livedocuments.netlify.app"
     ],
     methods: ["GET", "PUT"]
   )
