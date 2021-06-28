@@ -13,7 +13,12 @@ defmodule Livedocs.Router do
   alias Livedocs.{Document, Mutations}
 
   plug(CORSPlug,
-    origin: ["http://localhost:3000", "http://example2.com", ~r/https?.*example\d?\.com$/],
+    origin: [
+      "http://localhost:3000",
+      "https://60d95310abf1b069a2a0dc05--livedocuments.netlify.app",
+      "https://livedocuments.netlify.app",
+      ~r/https?.*example\d?\.com$/
+    ],
     methods: ["GET", "PUT"]
   )
 
